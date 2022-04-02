@@ -75,15 +75,15 @@ function QBCore.Player.CheckPlayerData(source, PlayerData)
     PlayerData.metadata['fitbit'] = PlayerData.metadata['fitbit'] or {}
     PlayerData.metadata['commandbinds'] = PlayerData.metadata['commandbinds'] or {}
     PlayerData.metadata['bloodtype'] = PlayerData.metadata['bloodtype'] or QBCore.Config.Player.Bloodtypes[math.random(1, #QBCore.Config.Player.Bloodtypes)]
-    PlayerData.metadata['dealerrep'] = PlayerData.metadata['dealerrep'] or 0
-    PlayerData.metadata['craftingrep'] = PlayerData.metadata['craftingrep'] or 0
+    -- PlayerData.metadata['dealerrep'] = PlayerData.metadata['dealerrep'] or 0
+    -- PlayerData.metadata['craftingrep'] = PlayerData.metadata['craftingrep'] or 0
     PlayerData.metadata['attachmentcraftingrep'] = PlayerData.metadata['attachmentcraftingrep'] or 0
     PlayerData.metadata['currentapartment'] = PlayerData.metadata['currentapartment'] or nil
     PlayerData.metadata['jobrep'] = PlayerData.metadata['jobrep'] or {}
-    PlayerData.metadata['jobrep']['tow'] = PlayerData.metadata['jobrep']['tow'] or 0
-    PlayerData.metadata['jobrep']['trucker'] = PlayerData.metadata['jobrep']['trucker'] or 0
-    PlayerData.metadata['jobrep']['taxi'] = PlayerData.metadata['jobrep']['taxi'] or 0
-    PlayerData.metadata['jobrep']['hotdog'] = PlayerData.metadata['jobrep']['hotdog'] or 0
+    -- PlayerData.metadata['jobrep']['tow'] = PlayerData.metadata['jobrep']['tow'] or 0
+    -- PlayerData.metadata['jobrep']['trucker'] = PlayerData.metadata['jobrep']['trucker'] or 0
+    -- PlayerData.metadata['jobrep']['taxi'] = PlayerData.metadata['jobrep']['taxi'] or 0
+    -- PlayerData.metadata['jobrep']['hotdog'] = PlayerData.metadata['jobrep']['hotdog'] or 0
     PlayerData.metadata['callsign'] = PlayerData.metadata['callsign'] or 'NO CALLSIGN'
     PlayerData.metadata['fingerprint'] = PlayerData.metadata['fingerprint'] or QBCore.Player.CreateFingerId()
     PlayerData.metadata['walletid'] = PlayerData.metadata['walletid'] or QBCore.Player.CreateWalletId()
@@ -92,7 +92,7 @@ function QBCore.Player.CheckPlayerData(source, PlayerData)
         ['date'] = nil
     }
     PlayerData.metadata['licences'] = PlayerData.metadata['licences'] or {
-        ['driver'] = true,
+        ['driver'] = false,
         ['business'] = false,
         ['weapon'] = false
     }
@@ -110,15 +110,15 @@ function QBCore.Player.CheckPlayerData(source, PlayerData)
     -- Job
     if PlayerData.job and PlayerData.job.name and not QBCore.Shared.Jobs[PlayerData.job.name] then PlayerData.job = nil end
     PlayerData.job = PlayerData.job or {}
-    PlayerData.job.name = PlayerData.job.name or 'unemployed'
-    PlayerData.job.label = PlayerData.job.label or 'Civilian'
+    PlayerData.job.name = PlayerData.job.name or 'whitelist'
+    PlayerData.job.label = PlayerData.job.label or 'Bürger'
     PlayerData.job.payment = PlayerData.job.payment or 10
     if QBCore.Shared.ForceJobDefaultDutyAtLogin or PlayerData.job.onduty == nil then
         PlayerData.job.onduty = QBCore.Shared.Jobs[PlayerData.job.name].defaultDuty
     end
     PlayerData.job.isboss = PlayerData.job.isboss or false
     PlayerData.job.grade = PlayerData.job.grade or {}
-    PlayerData.job.grade.name = PlayerData.job.grade.name or 'Freelancer'
+    PlayerData.job.grade.name = PlayerData.job.grade.name or 'Stufe 1'
     PlayerData.job.grade.level = PlayerData.job.grade.level or 0
     -- Gang
     if PlayerData.gang and PlayerData.gang.name and not QBCore.Shared.Gangs[PlayerData.gang.name] then PlayerData.gang = nil end
@@ -458,7 +458,7 @@ function QBCore.Player.Save(source)
             metadata = json.encode(PlayerData.metadata)
         })
         QBCore.Player.SaveInventory(source)
-        QBCore.ShowSuccess(GetCurrentResourceName(), PlayerData.name .. ' PLAYER SAVED!')
+        QBCore.ShowSuccess(GetCurrentResourceName(), PlayerData.name .. ' Bürger gespeichert!')
     else
         QBCore.ShowError(GetCurrentResourceName(), 'ERROR QBCORE.PLAYER.SAVE - PLAYERDATA IS EMPTY!')
     end
@@ -470,9 +470,17 @@ local playertables = { -- Add tables as needed
     { table = 'players' },
     { table = 'apartments' },
     { table = 'bank_accounts' },
-    { table = 'crypto_transactions' },
+    { table = 'phone_ads' },
+    { table = 'phone_chats' },
+    { table = 'phone_contacts' },
+    { table = 'phone_darkgroups' },
+    { table = 'phone_darkmessages' },
+    { table = 'phone_groups' },
     { table = 'phone_invoices' },
     { table = 'phone_messages' },
+    { table = 'phone_transactions' },
+    { table = 'phone_tweets' },
+    { table = 'phone_twitteraccounts' },
     { table = 'playerskins' },
     { table = 'player_boats' },
     { table = 'player_contacts' },
