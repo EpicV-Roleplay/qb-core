@@ -224,7 +224,7 @@ end
 -- Kick Player
 
 function QBCore.Functions.Kick(source, reason, setKickReason, deferrals)
-    reason = '\n' .. reason .. '\n🔸 Check our Discord for further information: ' .. QBCore.Config.Server.Discord
+    reason = '\n' .. reason .. '\n🔸 Auf unseren EpicV Discord bekommst du weitere Informationen: ' .. QBCore.Config.Server.Discord
     if setKickReason then
         setKickReason(reason)
     end

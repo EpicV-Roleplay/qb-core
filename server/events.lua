@@ -27,7 +27,7 @@ local function onPlayerConnecting(name, setKickReason, deferrals)
         end
     end
 
-    deferrals.update(string.format('Hello %s. Validating Your Rockstar License', name))
+    deferrals.update(string.format('Hallo %s. Validierung deiner Rockstar-Lizenz', name))
 
     for _, v in pairs(identifiers) do
         if string.find(v, 'license') then
@@ -39,7 +39,7 @@ local function onPlayerConnecting(name, setKickReason, deferrals)
     -- Mandatory wait
     Wait(2500)
 
-    deferrals.update(string.format('Hello %s. We are checking your allowance.', name))
+    deferrals.update(string.format('Hallo %s. Wir prüfen Ihren V-CODE.', name))
 
     local isBanned, Reason = QBCore.Functions.IsPlayerBanned(src)
     local isLicenseAlreadyInUse = QBCore.Functions.IsLicenseInUse(license)
@@ -47,16 +47,16 @@ local function onPlayerConnecting(name, setKickReason, deferrals)
 
     Wait(2500)
 
-    deferrals.update(string.format('Welcome %s to {Server Name}.', name))
+    deferrals.update(string.format('Willkommen %s zu {Server Name}.', name))
 
     if not license then
-        deferrals.done('No Valid Rockstar License Found')
+        deferrals.done('Keine gültige Rockstar-Lizenz gefunden')
     elseif isBanned then
         deferrals.done(Reason)
     elseif isLicenseAlreadyInUse and QBCore.Config.Server.CheckDuplicateLicense then
-        deferrals.done('Duplicate Rockstar License Found')
+        deferrals.done('Doppelte Rockstar-Lizenz gefunden')
     elseif isWhitelist and not whitelisted then
-        deferrals.done('You\'re not whitelisted for this server')
+        deferrals.done('Sie sind nicht auf der Whitelist für diesen Server')
     else
         deferrals.done()
         if QBCore.Config.Server.UseConnectQueue then
@@ -83,7 +83,7 @@ RegisterNetEvent('QBCore:Server:CloseServer', function(reason)
             end
         end
     else
-        QBCore.Functions.Kick(src, 'You don\'t have permissions for this..', nil, nil)
+        QBCore.Functions.Kick(src, 'Sie haben keine Berechtigung für diese..', nil, nil)
     end
 end)
 
@@ -92,7 +92,7 @@ RegisterNetEvent('QBCore:Server:OpenServer', function()
     if QBCore.Functions.HasPermission(src, 'admin') then
         QBCore.Config.Server.Closed = false
     else
-        QBCore.Functions.Kick(src, 'You don\'t have permissions for this..', nil, nil)
+        QBCore.Functions.Kick(src, 'Sie haben keine Berechtigung für diese..', nil, nil)
     end
 end)
 

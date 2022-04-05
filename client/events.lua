@@ -50,10 +50,15 @@ end)
 RegisterNetEvent('QBCore:Command:SpawnVehicle', function(vehName)
     local ped = PlayerPedId()
     local hash = GetHashKey(vehName)
+    local veh = GetVehiclePedIsUsing(ped)
     if not IsModelInCdimage(hash) then return end
     RequestModel(hash)
     while not HasModelLoaded(hash) do
         Wait(0)
+    end
+        
+    if IsPedInAnyVehicle(ped) then 
+        DeleteVehicle(veh)
     end
     local vehicle = CreateVehicle(hash, GetEntityCoords(ped), GetEntityHeading(ped), true, false)
     TaskWarpPedIntoVehicle(ped, vehicle, -1)
