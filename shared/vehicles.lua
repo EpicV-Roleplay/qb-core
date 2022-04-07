@@ -4419,25 +4419,25 @@ QBShared.Vehicles = {
 	},
 	
 	--Police Cars
-	['police2'] = { --Police2
+	['police2'] = { --Police Car 2
 		['name'] = 'Police Car 2',
 		['brand'] = 'Unknown manufacturer',
 		['model'] = 'police2',
 		['price'] = 25000,
-		['category'] = 'police2',
-		['hash'] = `emergency`,
+		['category'] = 'emergency',
+		['hash'] = `police2`,
 		['shop'] = 'pdm',
 	},
-	['police2b'] = { --Police2
+	['police2b'] = { --Police Car 2b
 		['name'] = 'Police Car 2',
 		['brand'] = 'Bravado',
 		['model'] = 'police2b',
 		['price'] = 25000,
-		['category'] = 'police2b',
-		['hash'] = `emergency`,
+		['category'] = 'emergency',
+		['hash'] = `police2b`,
 		['shop'] = 'pdm',
 },
-	['police3a'] = { --Speedo Express Escalera
+	['police3a'] = { --Police Car 3a
 		['name'] = 'Police Car 3',
 		['brand'] = 'Unknown manufacturer',
 		['model'] = 'police3a',
@@ -4446,7 +4446,7 @@ QBShared.Vehicles = {
 		['hash'] = `police3a`,
 		['shop'] = 'pdm',
 	},
-	['police3'] = { --Speedo Express Escalera
+	['police3'] = { --Police Car 3
 		['name'] = 'Police Car 3',
 		['brand'] = 'Unknown manufacturer',
 		['model'] = 'police3',
@@ -4455,7 +4455,7 @@ QBShared.Vehicles = {
 		['hash'] = `police3`,
 		['shop'] = 'pdm',
 },
-	['roit'] = { --Speedo Express Escalera
+	['roit'] = { --Roit
 		['name'] = 'RIOT',
 		['brand'] = 'Unknown manufacturer',
 		['model'] = 'roit',
@@ -4464,7 +4464,7 @@ QBShared.Vehicles = {
 		['hash'] = `roit`,
 		['shop'] = 'pdm',
 	},
-	['pbus'] = { --Speedo Express Escalera
+	['pbus'] = { --Police Prison Bus
 		['name'] = 'Police Prison Bus',
 		['brand'] = 'Unknown manufacturer',
 		['model'] = 'pbus',
@@ -4473,7 +4473,7 @@ QBShared.Vehicles = {
 		['hash'] = `pbus`,
 		['shop'] = 'pdm',
 	},
-	['pscout'] = { --Speedo Express Escalera
+	['pscout'] = { --Vapid Police Scout
 		['name'] = 'Vapid Police Scout',
 		['brand'] = 'Vapid',
 		['model'] = 'pbus',
@@ -4481,7 +4481,17 @@ QBShared.Vehicles = {
 		['category'] = 'emergency',
 		['hash'] = `pscout`,
 		['shop'] = 'pdm',
-},
+	},
+	['AMBULANCE'] = { --amvulance
+		['name'] = 'Ambulance',
+		['brand'] = 'Unknown manufacturer',
+		['model'] = 'ambulance',
+		['price'] = 40000,
+		['category'] = 'emergency',
+		['hash'] = `1171614426`,
+		['shop'] = 'pdm',
+	},
+
 	
 	
 	
