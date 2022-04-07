@@ -57,9 +57,10 @@ RegisterNetEvent('QBCore:Command:SpawnVehicle', function(vehName)
         Wait(0)
     end
         
-    if IsPedInAnyVehicle(ped) then 
+     if IsPedInAnyVehicle(ped) then 
         DeleteVehicle(veh)
     end
+        
     local vehicle = CreateVehicle(hash, GetEntityCoords(ped), GetEntityHeading(ped), true, false)
     TaskWarpPedIntoVehicle(ped, vehicle, -1)
     SetVehicleFuelLevel(vehicle, 100.0)
