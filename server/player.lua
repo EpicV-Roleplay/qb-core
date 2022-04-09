@@ -482,7 +482,6 @@ local playertables = { -- Add tables as needed
     { table = 'phone_tweets' },
     { table = 'phone_twitteraccounts' },
     { table = 'playerskins' },
-    { table = 'player_boats' },
     { table = 'player_contacts' },
     { table = 'player_houses' },
     { table = 'player_mails' },
