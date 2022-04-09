@@ -440,12 +440,13 @@ QBShared.Items = {
 	['moonshine_cheesecloth'] 			 	 = {['name'] = 'moonshine_cheesecloth', 			['label'] = 'Cheesecloth', 		    ['weight'] = 1000, 	['type'] = 'item', 		['image'] = 'moonshine_cheesecloth.png', 			['unique'] = false, ['useable'] = false, 	['shouldClose'] = false,   ['combinable'] = nil,   ['description'] = 'Cheesecloth'},
 
 	--qb-vehiclerentals
-	["rentalpapers"]                 = {["name"] = "rentalpapers",                   	["label"] = "Mietquittung",             	["weight"] = 100,      ["type"] = "item",      ["image"] = "rentalpapers.png",         ["unique"] = true,     	["useable"] = false,    ["shouldClose"] = true,    ["combinable"] = nil,   ["description"] = "Ich glaube, es enthält einen Satz Schlüssel für das Mietfahrzeug."},
+		["rentalpapers"]                 = {["name"] = "rentalpapers",                   	["label"] = "Rentalpapers",             	["weight"] = 1000,      ["type"] = "item",      ["image"] = "rentalpapers.png",         ["unique"] = true,     	["useable"] = false,    ["shouldClose"] = true,    ["combinable"] = nil,   ["description"] = "I think this contains a set of keys to the rental vehicle."},
 
 	--jim-mechanic Vehicles
 	["mechanic_tools"] 				= {["name"] = "mechanic_tools", 			["label"] = "Mechanic tools", 		    ["weight"] = 0, 		["type"] = "item", 		["image"] = "mechanic_tools.png", 		["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = "Needed for vehicle repairs"},
 	["toolbox"] 					= {["name"] = "toolbox", 			 	  	["label"] = "Toolbox", 		            ["weight"] = 0, 		["type"] = "item", 		["image"] = "toolbox.png", 				["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = "Needed for Performance part removal"},
 	["ducttape"] 					= {["name"] = "ducttape", 			 	  	["label"] = "Duct Tape", 		       	["weight"] = 0, 		["type"] = "item", 		["image"] = "bodyrepair.png", 			["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = "Good for quick fixes"},
+	["mechboard"] 					= {["name"] = "mechboard", 			 	  	["label"] = "Mechanic Sheet", 		   	["weight"] = 0, 		["type"] = "item", 		["image"] = "mechboard.png", 			["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = ""},
 	
 	--Performance
 	["turbo"] 		 	 		 	= {["name"] = "turbo", 						["label"] = "Supercharger Turbo", 		["weight"] = 0, 		["type"] = "item", 		["image"] = "turbo.png", 				["unique"] = false, 	["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = "Who doesn't need a 65mm Turbo??"},
@@ -493,7 +494,7 @@ QBShared.Items = {
 	["rims"] 						 = {["name"] = "rims", 						["label"] = "Custom Wheel Rims", 		["weight"] = 0, 		["type"] = "item", 		["image"] = "rims.png", 				["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = ""},
 	
 	["livery"] 						 = {["name"] = "livery", 					["label"] = "Livery Roll", 				["weight"] = 0, 		["type"] = "item", 		["image"] = "livery.png", 				["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = ""},
-	["paintcan"] 					 = {["name"] = "paintcan", 					["label"] = "Vehicle Spray Can", 		["weight"] = 0, 		["type"] = "item", 		["image"] = "weapontint_orange.png", 	["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = ""},
+	["paintcan"] 					 = {["name"] = "paintcan", 					["label"] = "Vehicle Spray Can", 		["weight"] = 0, 		["type"] = "item", 		["image"] = "spraycan.png", 	["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = ""},
 	["tires"] 						 = {["name"] = "tires", 					["label"] = "Drift Smoke Tires",        ["weight"] = 0, 		["type"] = "item", 		["image"] = "tires.png", 	  		    ["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = ""},
 
 	["horn"] 						 = {["name"] = "horn", 						["label"] = "Custom Vehicle Horn", 		["weight"] = 0, 		["type"] = "item", 		["image"] = "horn.png", 				["unique"] = true, 		["useable"] = true, 	["shouldClose"] = true,   ["combinable"] = nil,   ["description"] = ""},
@@ -1021,42 +1022,16 @@ QBShared.Items = {
 
 		['radiocar_dismounter'] = { ['name'] = 'radiocar_dismounter', ['label'] = 'radiocar_dismounter', ['weight'] = 100, ['type'] = 'item', ['image'] = 'radiocar.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false, ['combinable'] = nil, ['description'] = 'radiocar_dismounter' },
    		['radiocar'] = { ['name'] = 'radiocar', ['label'] = 'radiocar', ['weight'] = 100, ['type'] = 'item', ['image'] = 'radiocar.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = false, ['combinable'] = nil, ['description'] = 'radiocar' },
-		["bowlingball"] = {
-			["name"] = "bowlingball", 			 	
-			["label"] = "Bowling Ball", 	    
-			["weight"] = 150, 		
-			["type"] = "item", 		
-			["expire"] = 999,		
-			["image"] = "bowlingball.png", 	    	
-			["unique"] = false,   	
-			["useable"] = true, 	
-			["shouldClose"] = true,    
-			["combinable"] = nil,   
-			["description"] = "Magic"
-		},
-		["bowlingreceipt"] = {
-			["name"] = "bowlingreceipt", 			 	
-			["label"] = "Bowling Recepit", 	    
-			["weight"] = 150, 		
-			["type"] = "item", 		
-			["expire"] = 999,		
-			["image"] = "bowlingreceipt.png", 	    	
-			["unique"] = false,   	
-			["useable"] = true, 	
-			["shouldClose"] = true,    
-			["combinable"] = nil,   
-			["description"] = "Magic"
-		},
 
 		['condom']                       = {['name'] = 'condom',                             ['label'] = 'Condom',                 ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'condom.png',             ['unique'] = false,     ['useable'] = true,     ['shouldClose'] = true,       ['combinable'] = nil,   ['description'] = 'Condom'},
-
 		['levonorgestrel']                       = {['name'] = 'levonorgestrel',                             ['label'] = 'Levonorgestrel',                 ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'levonorgestrel.png',             ['unique'] = false,     ['useable'] = true,     ['shouldClose'] = true,       ['combinable'] = nil,   ['description'] = 'Levonorgestrel'},
-
 		['mifepristone']                       = {['name'] = 'mifepristone',                             ['label'] = 'Mifepristone',                 ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'mifepristone.png',             ['unique'] = false,     ['useable'] = true,     ['shouldClose'] = true,       ['combinable'] = nil,   ['description'] = 'Mifepristone'},
-
 		['testpack']                       = {['name'] = 'testpack',                             ['label'] = 'Test Pack',                 ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'testpack.png',             ['unique'] = false,     ['useable'] = true,     ['shouldClose'] = true,       ['combinable'] = nil,   ['description'] = 'Test Pack'},
-
 		['viagra']                       = {['name'] = 'viagra',                             ['label'] = 'Viagra',                 ['weight'] = 100,         ['type'] = 'item',         ['image'] = 'viagra.png',             ['unique'] = false,     ['useable'] = true,     ['shouldClose'] = true,       ['combinable'] = nil,   ['description'] = 'Viagra'},
 
+		['backpack_small']				 = {['name'] = 'backpack_small',				['label'] = 'Small Backpack',			['weight'] = 1000,		['type'] = 'item',		['image'] = 'small_backpack.png',		['unique'] = true,		['useable'] = true,		['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A small backpack to carry more items at once'},
+		['backpack_medium']				 = {['name'] = 'backpack_medium',				['label'] = 'Medium Backpack',			['weight'] = 1500,		['type'] = 'item',		['image'] = 'medium_backpack.png',		['unique'] = true,		['useable'] = true,		['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A medium backpack to carry more items at once'},
+		['backpack_large']				 = {['name'] = 'backpack_large',				['label'] = 'Large Backpack',			['weight'] = 2000,		['type'] = 'item',		['image'] = 'large_backpack.png',		['unique'] = true,		['useable'] = true,		['shouldClose'] = true,	   ['combinable'] = nil,   ['description'] = 'A large backpack to carry more items at once'},
 
-	}
+		["head_bag"] 					 = {["name"] = "head_bag", 			 	["label"] = "Head Bag", 						["weight"] = 5, 		["type"] = "item", 		["image"] = "head_bag.png", 			["unique"] = true, 		["useable"] = true, 	["shouldClose"] = false,   ["combinable"] = nil,   ["description"] = "Put mask on hostage."},
+}
