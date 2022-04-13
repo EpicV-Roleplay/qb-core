@@ -109,6 +109,14 @@ function QBCore.Functions.LoadModel(model)
 	end
 end
 
+function QBCore.Functions.LoadAnimSet(animSet)
+    if HasAnimSetLoaded(animSet) then return end
+    RequestAnimSet(animSet)
+    while not HasAnimSetLoaded(animSet) do
+        Wait(0)
+    end
+end
+
 RegisterNUICallback('getNotifyConfig', function(_, cb)
     cb(QBCore.Config.Notify)
 end)
@@ -489,7 +497,12 @@ function QBCore.Functions.GetVehicleProperties(vehicle)
             windowStatus = windowStatus,
             doorStatus = doorStatus,
             xenonColor = GetVehicleXenonLightsColour(vehicle),
-            neonEnabled = neons,
+            neonEnabled = {
+                IsVehicleNeonLightEnabled(vehicle, 0),
+                IsVehicleNeonLightEnabled(vehicle, 1),
+                IsVehicleNeonLightEnabled(vehicle, 2),
+                IsVehicleNeonLightEnabled(vehicle, 3)
+            },
             neonColor = table.pack(GetVehicleNeonLightsColour(vehicle)),
             headlightColor = GetVehicleHeadlightsColour(vehicle),
             interiorColor = GetVehicleInteriorColour(vehicle),
@@ -610,7 +623,6 @@ function QBCore.Functions.SetVehicleProperties(vehicle, props)
                 if not smashWindow then SmashVehicleWindow(vehicle, windowIndex) end
             end
         end
-        if props.doorStatus then for doorIndex, breakDoor in pairs(props.doorStatus) do if breakDoor then SetVehicleDoorBroken(vehicle, doorIndex, true) end end end
         if props.neonEnabled then for neonIndex, enableNeons in pairs(props.neonEnabled) do SetVehicleNeonLightEnabled(vehicle, neonIndex, enableNeons) end end
         if props.neonColor then SetVehicleNeonLightsColour(vehicle, props.neonColor[1], props.neonColor[2], props.neonColor[3]) end
         if props.headlightColor then SetVehicleHeadlightsColour(vehicle, props.headlightColor) end
@@ -675,82 +687,3 @@ function QBCore.Functions.SetVehicleProperties(vehicle, props)
 		if props.modDrift then SetDriftTyresEnabled(vehicle, true) end	
 		SetVehicleTyresCanBurst(vehicle, not props.modBProofTires)
     end
-end
-
-function QBCore.Functions.LoadParticleDictionary(dictionary)
-    if HasNamedPtfxAssetLoaded(dictionary) then return end
-    RequestNamedPtfxAsset(dictionary)
-    while not HasNamedPtfxAssetLoaded(dictionary) do
-        Wait(0)
-    end
-end
-
-function QBCore.Functions.StartParticleAtCoord(dict, ptName, looped, coords, rot, scale, alpha, color, duration)
-    if coords then
-        coords = type(coords) == 'table' and vec3(coords.x, coords.y, coords.z) or coords
-    else
-        coords = GetEntityCoords(PlayerPedId())
-    end
-    QBCore.Functions.LoadParticleDictionary(dict)
-    UseParticleFxAssetNextCall(dict)
-    SetPtfxAssetNextCall(dict)
-    local particleHandle
-    if looped then
-        particleHandle = StartParticleFxLoopedAtCoord(ptName, coords.x, coords.y, coords.z, rot.x, rot.y, rot.z, scale or 1.0)
-        if color then
-            SetParticleFxLoopedColour(particleHandle, color.r, color.g, color.b, false)
-        end
-        SetParticleFxLoopedAlpha(particleHandle, alpha or 10.0)
-        if duration then
-            Wait(duration)
-            StopParticleFxLooped(particleHandle, 0)
-        end
-    else
-        SetParticleFxNonLoopedAlpha(alpha or 10.0)
-        if color then
-            SetParticleFxNonLoopedColour(color.r, color.g, color.b)
-        end
-        StartParticleFxNonLoopedAtCoord(ptName, coords.x, coords.y, coords.z, rot.x, rot.y, rot.z, scale or 1.0)
-    end
-    return particleHandle
-end
-
-function QBCore.Functions.StartParticleOnEntity(dict, ptName, looped, entity, bone, offset, rot, scale, alpha, color, evolution, duration)
-    QBCore.Functions.LoadParticleDictionary(dict)
-    UseParticleFxAssetNextCall(dict)
-    local particleHandle, boneID
-    if bone and GetEntityType(entity) == 1 then
-        boneID = GetPedBoneIndex(entity, bone)
-    elseif bone then
-        boneID = GetEntityBoneIndexByName(entity, bone)
-    end
-    if looped then
-        if bone then
-            particleHandle = StartParticleFxLoopedOnEntityBone(ptName, entity, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z, boneID, scale)
-        else
-            particleHandle = StartParticleFxLoopedOnEntity(ptName, entity, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z, scale)
-        end
-        if evolution then
-            SetParticleFxLoopedEvolution(particleHandle, evolution.name, evolution.amount, false)
-        end
-        if color then
-            SetParticleFxLoopedColour(particleHandle, color.r, color.g, color.b, false)
-        end
-        SetParticleFxLoopedAlpha(particleHandle, alpha)
-        if duration then
-            Wait(duration)
-            StopParticleFxLooped(particleHandle, 0)
-        end
-    else
-        SetParticleFxNonLoopedAlpha(alpha or 10.0)
-        if color then
-            SetParticleFxNonLoopedColour(color.r, color.g, color.b)
-        end
-        if bone then
-            StartParticleFxNonLoopedOnPedBone(ptName, entity, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z, boneID, scale)
-        else
-            StartParticleFxNonLoopedOnEntity(ptName, entity, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z, scale)
-        end
-    end
-    return particleHandle
-end

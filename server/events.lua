@@ -34,7 +34,7 @@ local function onPlayerConnecting(name, setKickReason, deferrals)
         end
     end
 
-    deferrals.update(string.format('Hallo %s. Validierung deiner Rockstar-Lizenz', name))
+    deferrals.update(string.format(Lang:t('info.checking_ban'), name))
 
     for _, v in pairs(identifiers) do
         if string.find(v, 'license') then
@@ -46,7 +46,7 @@ local function onPlayerConnecting(name, setKickReason, deferrals)
     -- Mandatory wait
     Wait(2500)
 
-    deferrals.update(string.format('Hallo %s. Wir prüfen Ihren V-CODE.', name))
+    deferrals.update(string.format(Lang:t('info.checking_whitelisted'), name))
 
     local isBanned, Reason = QBCore.Functions.IsPlayerBanned(src)
     local isLicenseAlreadyInUse = QBCore.Functions.IsLicenseInUse(license)
@@ -54,16 +54,16 @@ local function onPlayerConnecting(name, setKickReason, deferrals)
 
     Wait(2500)
 
-    deferrals.update(string.format('Willkommen %s zu {Server Name}.', name))
+    deferrals.update(Lang:t('info.join_server'), name)
 
     if not license then
-        deferrals.done('Keine gültige Rockstar-Lizenz gefunden')
+      deferrals.done(Lang:t('error.no_valid_license'))    
     elseif isBanned then
         deferrals.done(Reason)
     elseif isLicenseAlreadyInUse and QBCore.Config.Server.CheckDuplicateLicense then
-        deferrals.done('Doppelte Rockstar-Lizenz gefunden')
+        deferrals.done(Lang:t('error.duplicate_license'))
     elseif isWhitelist and not whitelisted then
-        deferrals.done('Sie sind nicht auf der Whitelist für diesen Server')
+      deferrals.done(Lang:t('error.not_whitelisted'))    
     else
         deferrals.done()
         if QBCore.Config.Server.UseConnectQueue then
